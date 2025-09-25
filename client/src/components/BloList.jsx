@@ -16,19 +16,19 @@ const BloList = () => {
     return <p>{truncated}</p>
   }
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const res = await axios.get('/api/blog')
-        if (res.status === 200) {
-          setBlogsCard(res.data.data || []) // fallback to empty array
-        }
-      } catch (err) {
-        console.error(err)
-      }
+ useEffect(() => {
+  const fetchBlogs = async () => {
+    try {
+      const res = await axios.get('/api/blog')
+      setBlogsCard(Array.isArray(res.data?.data) ? res.data.data : [])
+    } catch (err) {
+      console.error(err)
+      setBlogsCard([]) // fallback to empty array
     }
-    fetchBlogs()
-  }, []) // run only once
+  }
+  fetchBlogs()
+}, []) // empty dependency array
+
 
   // filter safely
   const filteredBlogs = Array.isArray(blogsCard)
