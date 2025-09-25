@@ -3,6 +3,8 @@ import { motion } from "motion/react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
+
+// home blog list , subscribe form , footer
 const BloList = () => {
   const [blogsCard, setBlogsCard] = useState([])
   const [menu, setMenu] = useState('All')
@@ -16,18 +18,18 @@ const BloList = () => {
     return <p>{truncated}</p>
   }
 
- useEffect(() => {
-  const fetchBlogs = async () => {
-    try {
-      const res = await axios.get('/api/blog')
-      setBlogsCard(Array.isArray(res.data?.data) ? res.data.data : [])
-    } catch (err) {
-      console.error(err)
-      setBlogsCard([]) // fallback to empty array
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await axios.get('/api/blog')
+        setBlogsCard(Array.isArray(res.data?.data) ? res.data.data : [])
+      } catch (err) {
+        console.error(err)
+        setBlogsCard([]) // fallback to empty array
+      }
     }
-  }
-  fetchBlogs()
-}, []) // empty dependency array
+    fetchBlogs()
+  }, []) // empty dependency array
 
 
   // filter safely
@@ -101,7 +103,84 @@ const BloList = () => {
             </div>
           ))}
         </div>
+
+        {/* subscribe form */}
+        <div className="container my-5">
+          <div className="row justify-content-center text-center">
+            <div className="col-12 col-md-8 col-lg-6">
+              {/* Heading */}
+              <h2 className="fw-bold mb-2">Never Miss Blog</h2>
+              {/* Subheading */}
+              <p className="text-muted mb-4" style={{ fontSize: "0.95rem" }}>
+                Subscribe to get the latest updates and articles directly in your inbox. </p>
+              {/* Subscribe Form */}
+              <form className="d-flex justify-content-center align-items-center gap-2">
+                <input type="email"
+                  className="form-control px-3"
+                  placeholder="Enter your email"
+                  required style={{ maxWidth: "300px" }} />
+                <button type="submit"
+                  className="btn btn-primary px-4" >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
+
+
+
+      {/* footer */}
+      <footer style={{ backgroundColor: "#dcdde0" }}
+        className="text-center text-md-start py-5">
+        <div className="container">
+          {/* Brand */}
+          <div className="mb-4">
+            <h2 className="fw-bold mb-2">
+              <span style={{ color: "#28a745" }}>Blog</span>Verse<span style={{ color: "#28a745" }}>.</span></h2>
+            <p className="text-muted mb-0"
+              style={{ fontSize: "0.95rem" }}>
+              Bringing ideas to life with blogs, insights, and tech updates.
+            </p>
+          </div>
+          <div className="row align-items-center justify-content-center justify-content-md-between mb-4">
+            {/* Quick Links */}
+            <div className="col-12 col-md-4 mb-3 mb-md-0">
+              <ul className="list-unstyled d-flex justify-content-center justify-content-md-start gap-3 mb-0">
+                <li>
+                  <a href="#!" className="text-primary text-decoration-none">Home</a>
+                </li>
+                <li>
+                  <a href="#!" className="text-primary text-decoration-none">Blog</a>
+                </li>
+                <li>
+                  <a href="#!" className="text-primary text-decoration-none">About</a>
+                </li>
+                <li>
+                  <a href="#!" className="text-primary text-decoration-none">Contact</a>
+                </li>
+              </ul>
+            </div>
+            {/* Subscribe */}
+            <div className="col-12 col-md-6">
+              <form className="d-flex justify-content-center justify-content-md-end gap-2">
+                <input
+                  type="email"
+                  className="form-control px-3"
+                  placeholder="Enter your email"
+                  style={{ maxWidth: "250px" }} />
+                <button className="btn btn-primary px-4">Subscribe</button>
+              </form>
+            </div>
+          </div>
+          {/* Bottom Text */}
+          <div className="text-center text-muted"
+            style={{ fontSize: "0.8rem" }}>
+            &copy; {new Date().getFullYear()} BuildVerse. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

@@ -1,7 +1,36 @@
 
-import React from "react";
+import React, { useState,useEffect } from "react";
 
 const Header = () => {
+    const [searchText, setSearchText] = useState('')
+    const [blogCards,setBlogsCards]=useState([])
+
+    useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await axios.get('/api/blog')
+        setBlogsCards(Array.isArray(res.data?.data) ? res.data.data : [])
+      } catch (err) {
+        console.error(err)
+        setBlogsCards([]) // fallback to empty array
+      }
+    }
+    fetchBlogs()
+  }, [])
+
+    const handleSearch = () => {
+        if (!searchText) return; // do nothing if empty
+
+        const filtered = blogCards.filter(blog =>
+        (blog.heading?.toLowerCase().includes(searchText.toLowerCase()) ||
+            blog.subHeading?.toLowerCase().includes(searchText.toLowerCase()) ||
+            blog.category?.toLowerCase().includes(searchText.toLowerCase()))
+        )
+        setBlogsCards(filtered) // show only filtered blogs
+    }
+
+
+
     return (
         <header
             className="d-flex flex-column align-items-center justify-content-center text-center"
@@ -79,13 +108,14 @@ const Header = () => {
                         fontWeight: 500,
                         flex: "none", // Prevents button from stretching
                     }}
-                    onClick={() => console.log("Search clicked")}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    onClick={handleSearch}
                 >
                     Search
                 </button>
             </div>
-            
-            
+
+
 
 
             {/* Inline responsive CSS (Bootstrap handles layout; these tweak typography + focus effect) */}

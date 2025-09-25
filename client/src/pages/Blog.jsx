@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { useParams, Link } from "react-router-dom"
-import BlogsInfo from '../components/BlogsCard'
 import axios from "axios"
 import "bootstrap/dist/css/bootstrap.min.css"
 
+
+
+// individual blog through id 
 const Blog = () => {
   const { id } = useParams()
   const [blogDetails, setBlogDetails] = useState(null)

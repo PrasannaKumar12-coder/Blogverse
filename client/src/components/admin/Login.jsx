@@ -112,15 +112,7 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="demo-credentials">
-          <p>Demo credentials:</p>
-          <div className="credential-pair">
-            <span>admin@example.com / admin123</span>
-          </div>
-          <div className="credential-pair">
-            <span>user@example.com / user123</span>
-          </div>
-        </div>
+        
       </div>
 
       <style jsx>{`
