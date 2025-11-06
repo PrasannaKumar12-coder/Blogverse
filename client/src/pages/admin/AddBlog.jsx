@@ -19,7 +19,7 @@ const AddBlog = () => {
     e.preventDefault();
     console.log(blogData);
     try {
-      const res = await axios.post("/api/blog", blogData);
+      const res = await axios.post("https://blogverse-2-oqgl.onrender.com/api/blog", blogData);
       if (res.status === 201) {
         alert("Blog added successfully");
         setBlogData({
