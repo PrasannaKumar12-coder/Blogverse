@@ -6,7 +6,7 @@ const ListBlog = () => {
   const [blogs, setBlogs] = useState([])
 
   useEffect(() => {
-    axios.get('/api/blog')
+    axios.get('https://blogverse-2-oqgl.onrender.com/api/blog')
       .then(res => {
         if(res.status === 200){
           setBlogs(res.data.data)
