@@ -8,7 +8,7 @@ const Header = () => {
     useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('/api/blog')
+        const res = await axios.get('https://blogverse-app.vercel.app/api/blog')
         setBlogsCards(Array.isArray(res.data?.data) ? res.data.data : [])
       } catch (err) {
         console.error(err)
