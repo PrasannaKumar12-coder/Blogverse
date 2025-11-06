@@ -21,7 +21,7 @@ const BloList = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('/api/blog')
+        const res = await axios.get('https://blogverse-2-oqgl.onrender.com/api/blog')
         setBlogsCard(Array.isArray(res.data?.data) ? res.data.data : [])
       } catch (err) {
         console.error(err)
