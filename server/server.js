@@ -26,7 +26,7 @@ app.use("/api/blog", BlogRoute);
 
 // Error handling
 app.use(( req, res,) => {
-  res.('api is working')
+  res.send('api is working')
 });
 
 // Start server
