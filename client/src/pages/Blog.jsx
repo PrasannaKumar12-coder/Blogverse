@@ -11,7 +11,7 @@ const Blog = () => {
   const [blogDetails, setBlogDetails] = useState(null)
 
   useEffect(() => {
-    axios.get(`http://localhost:5173/api/blog/${id}`)
+    axios.get(`https://blogverse-2-oqgl.onrender.com/api/blog/${id}`)
       .then(res => {
         if (res.status === 200) {
           setBlogDetails(res.data)
