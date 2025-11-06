@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [count, setCount] = useState(0);
 
 useEffect(() => {
-  axios.get("http://localhost:5000/api/blog/count")
+  axios.get("https://blogverse-2-oqgl.onrender.com/api/blog/count")
     .then(res => {
       console.log(res.data); 
       setCount(res.data.totalBlogs); 
